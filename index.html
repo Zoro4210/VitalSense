@@ -52,6 +52,12 @@
         </div>
     </nav>
 
+    <!-- ═══ SCROLL-MORPHING FULL BLEED ORB ═══ -->
+    <!-- Fixed overlay: starts as full-screen image, clip-path shrinks it to a circle at the anchor -->
+    <div id="orb-overlay" aria-hidden="true">
+        <img src="assets/problem-orb.jpg" id="orb-img" alt="">
+    </div>
+
     <!-- ═════════════════════════ HERO ═════════════════════════ -->
     <section class="hero" id="hero">
         <div class="hero-content">
@@ -127,11 +133,9 @@
                         <span class="stat-pill"><strong>$1.3B</strong> market in 2026</span>
                     </div>
                 </div>
-                <div class="section-visual reveal-item">
-                    <div class="zen-orb-container">
-                        <div class="zen-orb">
-                            <img src="assets/problem-orb.jpg" class="zen-orb-inner" alt="Problem Orb">
-                        </div>
+                <div class="section-visual reveal-item" style="display:flex;align-items:center;justify-content:center">
+                    <!-- orb destination marker + orbit rings that appear after the clip lands -->
+                    <div class="zen-orb-anchor" id="orb-anchor">
                         <div class="zen-orbit zen-orbit-1"></div>
                         <div class="zen-orbit zen-orbit-2"></div>
                         <div class="zen-orbit zen-orbit-3"></div>

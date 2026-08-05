@@ -116,6 +116,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     // ─────────────────────────────────────
+    // ORB SCROLL MORPH  (clip-path: circle)
+    // Hidden on hero → full-bleed appears + contracts
+    // into the orb circle as user scrolls to the
+    // problem section. Lands exactly when anchor is centred.
+    // ─────────────────────────────────────
+    const orbOverlay = document.getElementById('orb-overlay');
+    const orbAnchor  = document.getElementById('orb-anchor');
+    const orbImg     = document.getElementById('orb-img');
+
+    if (orbOverlay && orbAnchor && orbImg) {
+        const lerp = (a, b, t) => a + (b - a) * t;
+        const vmax = () => Math.max(window.innerWidth, window.innerHeight);
+
+        // State — starts as a tiny invisible circle (so it pops in, not a big blob)
+        let curR  = 0;
+        let curCX = window.innerWidth  / 2;
+        let curCY = window.innerHeight / 2;
+        let curOpacity = 0;
+
+        function getTargets() {
+            const scrollY = window.scrollY;
+            const vw      = window.innerWidth;
+            const vh      = window.innerHeight;
+            const heroEl  = document.getElementById('hero');
+            const heroH   = heroEl ? heroEl.offsetHeight : vh;
+
+            // -- When is progress = 1? --
+            // When the anchor's centre is at the viewport centre.
+            const anchorRect     = orbAnchor.getBoundingClientRect();
+            const anchorCenterY  = anchorRect.top + anchorRect.height / 2;
+            // scrollY at which anchor centre == vh/2  (i.e. centred in viewport)
+            const scrollAtLand   = scrollY + anchorCenterY - vh / 2;
+            // Animation runs from scrollY=heroH*0.15 → scrollAtLand
+            const scrollStart    = heroH * 0.15;
+            const scrollEnd      = Math.max(scrollStart + 1, scrollAtLand);
+            const progress       = Math.max(0, Math.min(1,
+                (scrollY - scrollStart) / (scrollEnd - scrollStart)
+            ));
+
+            // START state: huge circle at viewport centre (fully covers everything)
+            const startR  = vmax() * 1.5;
+            const startCX = vw / 2;
+            const startCY = vh / 2;
+
+            // END state: exact circle at anchor centre
+            const destCX  = anchorRect.left + anchorRect.width  / 2;
+            const destCY  = anchorCenterY;
+            const destR   = anchorRect.width / 2;
+
+            return {
+                r:       progress < 0.001 ? 0 : lerp(startR, destR, progress),
+                cx:      lerp(startCX, destCX, progress),
+                cy:      lerp(startCY, destCY, progress),
+                // opacity 0 on hero, ramps up quickly once scroll starts, full at progress=0.3
+                opacity: Math.min(1, progress / 0.3),
+            };
+        }
+
+        function orbRAF() {
+            const target   = getTargets();
+            const lerpAmt  = 0.09;
+
+            curR       = lerp(curR,       target.r,       lerpAmt);
+            curCX      = lerp(curCX,      target.cx,      lerpAmt);
+            curCY      = lerp(curCY,      target.cy,      lerpAmt);
+            curOpacity = lerp(curOpacity, target.opacity, lerpAmt);
+
+            // Only show overlay if we've started scrolling at all
+            if (curOpacity < 0.005) {
+                orbOverlay.style.visibility = 'hidden';
+            } else {
+                orbOverlay.style.visibility = 'visible';
+                orbOverlay.style.clipPath        = `circle(${Math.max(0, curR).toFixed(1)}px at ${curCX.toFixed(1)}px ${curCY.toFixed(1)}px)`;
+                orbOverlay.style.webkitClipPath  = orbOverlay.style.clipPath;
+                orbImg.style.opacity             = curOpacity.toFixed(3);
+            }
+
+            requestAnimationFrame(orbRAF);
+        }
+
+        orbRAF();
+    }
+
+
+
+    // ─────────────────────────────────────
     // 3. MOBILE NAV TOGGLE
     // ─────────────────────────────────────
     const navToggle = document.getElementById('nav-toggle');
