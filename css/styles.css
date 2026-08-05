@@ -1585,9 +1585,45 @@ a { color: inherit; text-decoration: none; }
 
 /* responsive */
 @media (max-width: 768px) {
-    .tc-track { height: 380px; }
-    .tc-card { flex-direction: column; width: min(90vw, 340px); }
-    .tc-portrait { width: 100%; height: 180px; }
+    .tc-track { height: 420px; }
+    .tc-card { 
+        width: min(90vw, 320px); 
+        height: 420px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .tc-portrait { 
+        position: absolute; 
+        inset: 0; 
+        width: 100%; 
+        height: 100%; 
+        z-index: 0; 
+    }
+    .tc-portrait::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, var(--bg) 10%, rgba(33, 10, 54, 0.7) 50%, transparent 100%);
+        pointer-events: none;
+    }
+    .tc-body { 
+        position: relative; 
+        z-index: 1; 
+        padding: 1.5rem; 
+    }
+    .tc-index { 
+        font-size: 2rem; 
+        color: rgba(255, 255, 255, 0.15); 
+    }
+    .tc-name {
+        font-size: 1.1rem;
+    }
+    .tc-desc {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
     .tc-card[data-pos="prev"]  { transform: translateX(-55%) scale(0.72) rotateY(20deg); }
     .tc-card[data-pos="next"]  { transform: translateX(55%)  scale(0.72) rotateY(-20deg); }
 }
