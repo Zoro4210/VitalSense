@@ -422,111 +422,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─────────────────────────────────────
-    // 12. TEAM CAROUSEL (True 3D Turntable)
+    // 12. TEAM COVERFLOW CAROUSEL
     // ─────────────────────────────────────
     const tcCards    = [...document.querySelectorAll('.tc-card')];
     const tcDots     = [...document.querySelectorAll('.tc-dot')];
     const tcPrev     = document.getElementById('tc-prev');
     const tcNext     = document.getElementById('tc-next');
     const tcCarousel = document.getElementById('team-carousel');
-    const tcTrack    = document.getElementById('tc-track');
 
-    if (tcCards.length && tcTrack) {
-        const total = tcCards.length;
-        const anglePerCard = 360 / total;
-        // Calculate radius so cards don't overlap too much.
-        const radius = Math.round(680 / 2 / Math.tan(Math.PI / total)) + 80;
-
-        // Pin cards on the 3D wheel
-        tcCards.forEach((card, i) => {
-            const angle = i * anglePerCard;
-            card.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`;
-        });
-
-        let current       = 0;       // Logical index (0 to total-1)
-        let targetAngle   = 0;       // Target rotation of the track
-        let currentAngle  = 0;       // Smoothly lerped rotation
-        
-        let paused        = false;
-        let elapsed       = 0;
-        const INTERVAL_MS = 3500;
-        let lastStamp     = null;
+    if (tcCards.length) {
+        const total       = tcCards.length;
+        let current       = 0;
+        let paused        = false;        // true while hovered or touched
         let rafId         = null;
+        let lastStamp     = null;
+        const INTERVAL_MS = 3200;         // advance every 3.2 s
+        let elapsed       = 0;
 
-        function updateClasses() {
-            // Find closest index
-            let normalizedIndex = Math.round(-targetAngle / anglePerCard) % total;
-            if (normalizedIndex < 0) normalizedIndex += total;
-            
+        // ── position logic ──
+        function getPos(cardIdx) {
+            const diff = ((cardIdx - current) % total + total) % total;
+            if (diff === 0)                    return 'active';
+            if (diff === 1)                    return 'next';
+            if (diff === total - 1)            return 'prev';
+            if (diff <= Math.floor(total / 2)) return 'far-next';
+            return 'far-prev';
+        }
+
+        function applyPositions() {
             tcCards.forEach((card, i) => {
-                if (i === normalizedIndex) {
-                    card.classList.add('tc-active');
-                    card.style.pointerEvents = 'auto';
-                } else {
-                    card.classList.remove('tc-active');
-                    card.style.pointerEvents = 'auto'; // allow clicking side cards
-                }
+                // Clear inline styles left from turntable mode
+                card.style.transform = '';
+                card.style.opacity = '';
+                card.style.pointerEvents = '';
+                card.setAttribute('data-pos', getPos(i));
+                card.classList.remove('tc-active');
             });
-            tcDots.forEach((dot, i) => dot.classList.toggle('active', i === normalizedIndex));
-            current = normalizedIndex;
+            tcDots.forEach((dot, i)   => dot.classList.toggle('active', i === current));
         }
 
         function advance(dir) {
-            targetAngle -= dir * anglePerCard;
-            updateClasses();
-            elapsed = 0;
+            current = ((current + dir) % total + total) % total;
+            applyPositions();
+            elapsed = 0; // reset timer after manual advance
         }
 
+        // ── RAF-based smooth auto-rotation ──
         function tick(stamp) {
-            if (lastStamp !== null) {
-                const dt = stamp - lastStamp;
-                
-                // Auto-advance
-                if (!paused) {
-                    elapsed += dt;
-                    if (elapsed >= INTERVAL_MS) {
-                        advance(1);
-                    }
+            if (lastStamp !== null && !paused) {
+                elapsed += stamp - lastStamp;
+                if (elapsed >= INTERVAL_MS) {
+                    current = (current + 1) % total;
+                    applyPositions();
+                    elapsed = 0;
                 }
-
-                // Smooth Lerp (5% per frame)
-                currentAngle += (targetAngle - currentAngle) * 0.05;
-                tcTrack.style.transform = `translateZ(${-radius}px) rotateY(${currentAngle}deg)`;
-                
-                // Dynamic fading based on actual real-time angle
-                tcCards.forEach((card, i) => {
-                    const cardAngle = i * anglePerCard;
-                    let diff = (cardAngle + currentAngle) % 360;
-                    if (diff < -180) diff += 360;
-                    if (diff > 180) diff -= 360;
-                    
-                    const absDiff = Math.abs(diff);
-                    // fully visible at front (absDiff near 0)
-                    // fade out quickly as it rotates to the side
-                    if (absDiff > 110) {
-                        card.style.opacity = '0';
-                    } else if (absDiff < 30) {
-                        card.style.opacity = '1';
-                    } else {
-                        card.style.opacity = (1 - ((absDiff - 30) / 80)).toFixed(3);
-                    }
-                });
             }
             lastStamp = stamp;
             rafId = requestAnimationFrame(tick);
         }
 
-        // Init
-        updateClasses();
+        // init
+        applyPositions();
         rafId = requestAnimationFrame(tick);
 
-        // Pause on hover
+        // ── Pause: hover ──
         if (tcCarousel) {
-            tcCarousel.addEventListener('mouseenter', () => { paused = true; elapsed = 0; });
+            tcCarousel.addEventListener('mouseenter', () => { paused = true;  elapsed = 0; });
             tcCarousel.addEventListener('mouseleave', () => { paused = false; lastStamp = null; });
         }
 
-        // Touch pause & swipe
+        // ── Pause: touch (finger on screen stops rotation) ──
         let touchX = null;
         if (tcCarousel) {
             tcCarousel.addEventListener('touchstart', e => {
@@ -536,14 +501,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: true });
 
             tcCarousel.addEventListener('touchend', e => {
+                // swipe detection
                 if (touchX !== null) {
                     const dx = e.changedTouches[0].clientX - touchX;
                     if (Math.abs(dx) > 40) advance(dx < 0 ? 1 : -1);
                 }
                 touchX = null;
                 paused = false;
-                lastStamp = null;
+                lastStamp = null; // smooth resume — don't count paused time
             });
+
             tcCarousel.addEventListener('touchcancel', () => {
                 touchX = null;
                 paused = false;
@@ -551,32 +518,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Controls
+        // ── Buttons ──
         tcPrev && tcPrev.addEventListener('click', () => advance(-1));
         tcNext && tcNext.addEventListener('click', () => advance(1));
+
+        // ── Dots ──
         tcDots.forEach(dot => {
             dot.addEventListener('click', () => {
-                const targetIdx = +dot.dataset.i;
-                let diff = targetIdx - current;
-                if (diff > total / 2) diff -= total;
-                if (diff < -total / 2) diff += total;
-                advance(diff);
+                current = +dot.dataset.i;
+                applyPositions();
+                elapsed = 0;
             });
         });
 
-        // Click side card to bring to front
-        tcCards.forEach((card, i) => {
+        // ── Click side card to bring to front ──
+        tcCards.forEach(card => {
             card.addEventListener('click', () => {
-                if (i !== current) {
-                    let diff = i - current;
-                    if (diff > total / 2) diff -= total;
-                    if (diff < -total / 2) diff += total;
-                    advance(diff);
-                }
+                const pos = card.getAttribute('data-pos');
+                if (pos === 'next')     advance(1);
+                if (pos === 'prev')     advance(-1);
+                if (pos === 'far-next') advance(2);
+                if (pos === 'far-prev') advance(-2);
             });
         });
 
-        // Keyboard
+        // ── Keyboard ──
         document.addEventListener('keydown', e => {
             if (e.key === 'ArrowRight') advance(1);
             if (e.key === 'ArrowLeft')  advance(-1);
