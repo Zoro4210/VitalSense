@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalSense — Predicting Pressure Ulcers Before They Happen</title>
+    <meta name="description" content="VitalSense is an Edge AI wearable and smart bedsheet system that continuously monitors bedridden patients and flags pressure ulcer risk in real time. No cloud dependency, no guesswork.">
+    <meta property="og:title" content="VitalSense — Predicting Pressure Ulcers Before They Happen">
+    <meta property="og:description" content="An Edge AI wearable and smart bedsheet system for real-time, on-device pressure ulcer risk prediction.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Ambient Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-brand">
+                <img src="assets/hero-bg.jpg" class="nav-vs-badge" alt="VitalSense Logo">
+                <span class="nav-logo-text">VitalSense</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#problem" class="nav-link">The Problem</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#solutions" class="nav-link">Solutions</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#contact" class="nav-cta-btn">Request Demo</a>
+            </div>
+            <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═════════════════════════ HERO ═════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+
+            <!-- Visual placeholder — swap src for your image when ready -->
+            <div class="hero-visual-wrapper" id="hero-visual">
+                <div class="visual-glow"></div>
+                <img src="assets/hero-bg.jpg" alt="VitalSense hero image" class="hero-visual-img">
+                <div class="visual-ring"></div>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="hero-line stagger" data-delay="0">Predicting Pressure Ulcers</span>
+                <span class="hero-line stagger cyan-gradient" data-delay="1">Before They Happen.</span>
+            </h1>
+
+            <p class="hero-subtitle stagger" data-delay="2">
+                An Edge AI wearable and smart bedsheet system that continuously monitors bedridden patients and flags pressure ulcer risk in real time — no cloud dependency, no guesswork.
+            </p>
+
+            <div class="hero-badge-row stagger" data-delay="3">
+                <span class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Edge AI · On-Device
+                </span>
+                <span class="hero-badge">No Cloud Required</span>
+                <span class="hero-badge">Home &amp; Hospital</span>
+            </div>
+
+            <div class="hero-cta stagger" data-delay="4">
+                <a href="#contact" class="btn-primary" id="cta-demo">
+                    <span>Request a Demo</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+                </a>
+                <a href="#how-it-works" class="btn-ghost" id="cta-learn">
+                    <span>Partner With Us</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator" id="scroll-indicator">
+            <span>scroll</span>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ THE PROBLEM ═════════════════════ -->
+    <section id="problem" class="section philosophy">
+        <div class="container">
+            <div class="section-grid">
+                <div class="section-text reveal-group">
+                    <span class="section-label reveal-item">The Problem</span>
+                    <h2 class="section-title reveal-item">
+                        Prevention today is<br>
+                        <span class="cyan-text">reactive, not predictive.</span>
+                    </h2>
+                    <p class="section-body reveal-item">
+                        Pressure ulcers (bedsores) are one of healthcare's most common, costly, and preventable complications — yet prevention still relies on manual repositioning schedules and caregiver vigilance.
+                    </p>
+                    <ul class="problem-list reveal-item">
+                        <li>Nurses and family caregivers can't monitor posture and pressure 24/7</li>
+                        <li>By the time redness is visible, tissue injury has often already begun</li>
+                        <li>Each hospital-acquired injury adds <strong style="color:var(--text-1)">$11,000–$22,000</strong> in treatment cost</li>
+                        <li>Small hospitals and home caregivers have the least support and the highest risk</li>
+                    </ul>
+                    <div class="stat-pill-row reveal-item">
+                        <span class="stat-pill"><strong>12.8%</strong> of hospitalized adults</span>
+                        <span class="stat-pill"><strong>26.6%</strong> in ICUs globally</span>
+                        <span class="stat-pill"><strong>$27B+</strong> annual U.S. burden</span>
+                        <span class="stat-pill"><strong>$1.3B</strong> market in 2026</span>
+                    </div>
+                </div>
+                <div class="section-visual reveal-item">
+                    <div class="zen-orb-container">
+                        <div class="zen-orb">
+                            <img src="assets/problem-orb.jpg" class="zen-orb-inner" alt="Problem Orb">
+                        </div>
+                        <div class="zen-orbit zen-orbit-1"></div>
+                        <div class="zen-orbit zen-orbit-2"></div>
+                        <div class="zen-orbit zen-orbit-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ HOW IT WORKS ═════════════════════ -->
+    <section id="how-it-works" class="section states">
+        <div class="container">
+            <div class="section-header reveal-group">
+                <span class="section-label reveal-item">How It Works</span>
+                <h2 class="section-title reveal-item">Two Modules. One System.</h2>
+                <p class="section-body reveal-item" style="max-width:600px;margin:0 auto">
+                    Sensing happens on the body and the bed. All AI inference happens locally, on-device — no cloud round-trip, no latency, no privacy compromise.
+                </p>
+            </div>
+
+            <div class="states-grid">
+                <!-- Smart Belt -->
+                <div class="state-card reveal-item" id="card-belt">
+                    <div class="card-icon-strip">
+                        <div class="card-icon">
+                            <svg class="card-icon-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="10" rx="5" ry="5"></rect>
+                                <circle cx="17" cy="12" r="3"></circle>
+                            </svg>
+                        </div>
+                        <span class="card-badge">System Brain</span>
+                    </div>
+                    <div class="card-device portrait-device">
+                        <div class="device-bezel">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <div class="mock-bar"></div>
+                                <div class="mock-card-row">
+                                    <div class="mock-card"></div>
+                                    <div class="mock-card alert"></div>
+                                </div>
+                                <div class="mock-list">
+                                    <div class="mock-list-item"></div>
+                                    <div class="mock-list-item"></div>
+                                    <div class="mock-list-item"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Module 1 — Smart Belt</h3>
+                    <p class="card-desc">Worn at the waist. Continuously tracks patient posture and acts as the system's brain — running all Edge AI inference locally with no cloud dependency.</p>
+                    <ul class="card-specs">
+                        <li>Silicon Labs EFR32xG26 with built-in IMU &amp; on-chip AI accelerator</li>
+                        <li>Tracks posture: left / supine / right in real time</li>
+                        <li>Communicates with the Bedsheet over BLE</li>
+                    </ul>
+                </div>
+
+                <!-- Smart Bedsheet -->
+                <div class="state-card state-card--zen reveal-item" id="card-sheet">
+                    <div class="card-icon-strip">
+                        <div class="card-icon">
+                            <svg class="card-icon-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 9V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4"></path>
+                                <path d="M2 13v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6"></path>
+                                <line x1="2" y1="11" x2="22" y2="11"></line>
+                            </svg>
+                        </div>
+                        <span class="card-badge card-badge--cyan">Pressure Sensing</span>
+                    </div>
+                    <div class="card-device landscape-device">
+                        <div class="device-bezel landscape-bezel">
+                            <div class="landscape-screen">
+                                <div class="mock-zen-bg"></div>
+                                <div class="mock-risk-display">
+                                    <span class="mock-risk-label">Risk Score</span>
+                                    <span class="mock-risk-score">LOW</span>
+                                    <span class="mock-risk-badge low">Safe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Module 2 — Smart Bedsheet</h3>
+                    <p class="card-desc">Four detachable, repositionable sensing plates that measure pressure distribution across the bed. Stays idle until the Belt requests a reading — maximizing battery life.</p>
+                    <ul class="card-specs">
+                        <li>Force Sensitive Resistors (FSR) built around an ESP32</li>
+                        <li>Measures pressure, weight concentration &amp; movement</li>
+                        <li>Wake-on-demand power model for efficiency</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 6-Step Signal Flow -->
+            <div class="flow-section reveal-item">
+                <p class="flow-section-title">The Signal Flow — From Posture to Risk Score</p>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="flow-step-num">1</div>
+                        <div class="flow-step-text">
+                            <strong>Belt monitors posture</strong>
+                            Continuously via the onboard IMU — left, supine, or right
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">2</div>
+                        <div class="flow-step-text">
+                            <strong>Posture unchanged?</strong>
+                            Belt requests pressure data from the Bedsheet over BLE
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">3</div>
+                        <div class="flow-step-text">
+                            <strong>Bedsheet wakes up</strong>
+                            Reads all four FSR plates and sends data back to Belt
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">4</div>
+                        <div class="flow-step-text">
+                            <strong>EFR32 fuses all data</strong>
+                            Position + time + pressure → on-device AI inference
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">5</div>
+                        <div class="flow-step-text">
+                            <strong>Risk score output</strong>
+                            <div class="risk-badge-row">
+                                <span class="risk-badge risk-low">Low</span>
+                                <span class="risk-badge risk-med">Medium</span>
+                                <span class="risk-badge risk-high">High</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">6</div>
+                        <div class="flow-step-text">
+                            <strong>Score is pushed</strong>
+                            To the mobile app or hospital dashboard in real time
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ KEY CAPABILITIES ═════════════════════ -->
+    <section id="solutions" class="section features">
+        <div class="container">
+            <div class="section-header reveal-group">
+                <span class="section-label reveal-item">Key Capabilities</span>
+                <h2 class="section-title reveal-item">Engineered for <span class="cyan-text">Real Care</span></h2>
+            </div>
+            <div class="features-grid">
+
+                <div class="feature-card reveal-item" id="feat-edge">
+                    <div class="feature-icon-wrap">
+                        <svg class="feature-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">On-Device Edge AI</h4>
+                    <p class="feature-desc">All risk inference runs locally on the EFR32xG26's AI accelerator. No internet needed, no cloud costs, no latency — data never leaves the device.</p>
+                </div>
+
+                <div class="feature-card reveal-item" id="feat-posture">
+                    <div class="feature-icon-wrap">
+                        <svg class="feature-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="5" r="3"></circle>
+                            <path d="M12 8v8m0 0-3-3m3 3 3-3"></path>
+                            <rect x="5" y="17" width="14" height="4" rx="2"></rect>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">Continuous Posture Tracking</h4>
+                    <p class="feature-desc">The Smart Belt's IMU continuously detects whether the patient is on their left side, supine, or right — triggering pressure checks only when needed.</p>
+                </div>
+
+                <div class="feature-card reveal-item" id="feat-fsr">
+                    <div class="feature-icon-wrap">
+                        <svg class="feature-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <path d="M3 9h18M9 3v18M15 3v18M3 15h18"></path>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">4-Zone Pressure Mapping</h4>
+                    <p class="feature-desc">Four repositionable FSR plates map pressure distribution, weight concentration, and micro-movement across the bed surface with granular precision.</p>
+                </div>
+
+                <div class="feature-card reveal-item" id="feat-alert">
+                    <div class="feature-icon-wrap">
+                        <svg class="feature-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">Real-Time Risk Alerts</h4>
+                    <p class="feature-desc">Low / Medium / High risk scores are pushed instantly to the mobile app or hospital dashboard — flagging high-risk patients before damage begins.</p>
+                </div>
+
+                <div class="feature-card reveal-item" id="feat-home">
+                    <div class="feature-icon-wrap">
+                        <svg class="feature-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">Home Care Ready</h4>
+                    <p class="feature-desc">Designed for family caregivers managing a bedridden patient at home. Simple installation, affordable price point, and a mobile-first experience.</p>
+                </div>
+
+                <div class="feature-card reveal-item" id="feat-hospital">
+                    <div class="feature-icon-wrap">
+                        <svg class="feature-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <path d="M3 9h18M9 3v18"></path>
+                            <path d="M15 6v6M12 9h6"></path>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">Hospital Dashboard</h4>
+                    <p class="feature-desc">Centralized multi-bed monitoring for small hospitals. High-risk patients are automatically surfaced — no expensive proprietary infrastructure required.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ EXPERIENCE / DEMO ═════════════════════ -->
+    <section id="demo" class="section experience">
+        <div class="container">
+            <div class="section-header reveal-group">
+                <span class="section-label reveal-item">Try It</span>
+                <h2 class="section-title reveal-item">Feel the system activate.</h2>
+                <p class="section-body reveal-item" style="max-width:550px;margin:0 auto">
+                    Click the device below to simulate the VitalSense lock-in flow — just like rotating into monitoring mode.
+                </p>
+            </div>
+            <div class="demo-stage reveal-item">
+                <div class="demo-device" id="demo-device">
+                    <div class="demo-bezel">
+                        <div class="demo-notch"></div>
+                        <div class="demo-screen">
+                            <!-- Portrait State -->
+                            <div class="demo-portrait" id="demo-portrait">
+                                <div class="demo-app-icon">VS</div>
+                                <div class="demo-status">Patient Monitoring</div>
+                                <div class="demo-tap-hint">
+                                    <span>Tap to Monitor</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3l-6 6m0-6h6v6M3 21l6-6m0 6H3v-6"/></svg>
+                                </div>
+                            </div>
+                            <!-- Landscape / Monitoring State -->
+                            <div class="demo-landscape" id="demo-landscape">
+                                <div class="demo-countdown" id="demo-countdown">3</div>
+                                <div class="demo-risk-display" id="demo-risk">
+                                    <div class="demo-risk-label">Risk Level</div>
+                                    <div class="demo-risk-value" id="demo-risk-value">LOW</div>
+                                    <div class="demo-risk-badge" id="demo-risk-badge">LOW RISK</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="demo-caption">← Click the device to activate monitoring mode</p>
+            </div>
+
+            <!-- Results Placeholder -->
+            <div class="results-placeholder reveal-item" style="margin-top:4rem">
+                <div class="results-icon">🔬</div>
+                <h3 class="results-title">Prototype in Active Validation</h3>
+                <p class="results-desc">
+                    This section will be updated with prototype photos, architecture diagrams, a demo video, and validated metrics once testing is complete.
+                </p>
+                <div class="metrics-preview">
+                    <div class="metric-chip">
+                        <div class="m-label">Risk Accuracy</div>
+                        <div class="m-value">— <span class="m-unit">%</span></div>
+                    </div>
+                    <div class="metric-chip">
+                        <div class="m-label">Response Time</div>
+                        <div class="m-value">— <span class="m-unit">ms</span></div>
+                    </div>
+                    <div class="metric-chip">
+                        <div class="m-label">Belt Battery</div>
+                        <div class="m-value">— <span class="m-unit">hrs</span></div>
+                    </div>
+                    <div class="metric-chip">
+                        <div class="m-label">Sheet Battery</div>
+                        <div class="m-value">— <span class="m-unit">days</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ TEAM ═════════════════════ -->
+    <section id="team" class="section">
+        <div class="container">
+            <div class="section-header reveal-group">
+                <span class="section-label reveal-item">The Team</span>
+                <h2 class="section-title reveal-item">Built by <span class="cyan-text">four engineers.</span></h2>
+                <p class="section-body reveal-item" style="max-width:560px;margin:0 auto">
+                    Firmware, embedded software, hardware, and machine learning — VitalSense is a full-stack hardware + AI effort built from the ground up.
+                </p>
+            </div>
+            <div class="team-grid">
+
+                <div class="team-card reveal-item">
+                    <img src="assets/team_ak.png" class="team-avatar av-1" alt="AK">
+                    <div class="team-info">
+                        <div class="team-name">Abhishek Kumar Rai</div>
+                        <div class="team-role">Firmware &amp; App Lead</div>
+                        <div class="team-desc">Device firmware, on-device model deployment, Flutter mobile app, and site development.</div>
+                        <div class="team-tags">
+                            <span class="team-tag">Firmware</span>
+                            <span class="team-tag">Flutter</span>
+                            <span class="team-tag">Edge AI</span>
+                            <span class="team-tag">Web</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card reveal-item">
+                    <img src="assets/team_ag.jpeg" class="team-avatar av-2" alt="AG">
+                    <div class="team-info">
+                        <div class="team-name">Arpan Gupta</div>
+                        <div class="team-role">Systems Software</div>
+                        <div class="team-desc">Raspberry Pi–based hospital-side data pipeline, backend systems, and dashboard infrastructure.</div>
+                        <div class="team-tags">
+                            <span class="team-tag">Raspberry Pi</span>
+                            <span class="team-tag">Pipeline</span>
+                            <span class="team-tag">Backend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card reveal-item">
+                    <img src="assets/team_bk.jpg" class="team-avatar av-3" alt="BK">
+                    <div class="team-info">
+                        <div class="team-name">Basudeo Krishnan</div>
+                        <div class="team-role">Hardware Lead</div>
+                        <div class="team-desc">Sensing plate design, wiring, and bed module integration — the physical foundation of VitalSense.</div>
+                        <div class="team-tags">
+                            <span class="team-tag">Hardware</span>
+                            <span class="team-tag">PCB</span>
+                            <span class="team-tag">FSR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card reveal-item">
+                    <img src="assets/team_bs.jpg" class="team-avatar av-4" alt="BS">
+                    <div class="team-info">
+                        <div class="team-name">Bhargavi Siva</div>
+                        <div class="team-role">ML Lead</div>
+                        <div class="team-desc">Model development, data collection strategy, and training the on-device risk-prediction model.</div>
+                        <div class="team-tags">
+                            <span class="team-tag">Machine Learning</span>
+                            <span class="team-tag">TinyML</span>
+                            <span class="team-tag">Data</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ CONTACT CTA ═════════════════════ -->
+    <section id="contact" class="section" style="padding-top:2rem;padding-bottom:5rem">
+        <div class="container">
+            <div class="section-header reveal-group" style="margin-bottom:2.5rem">
+                <span class="section-label reveal-item">Get In Touch</span>
+                <h2 class="section-title reveal-item">Interested in <span class="cyan-text">VitalSense?</span></h2>
+                <p class="section-body reveal-item" style="max-width:520px;margin:0 auto 2rem">
+                    Investors, hospital administrators, and distribution partners — reach out to learn more about our technology and roadmap.
+                </p>
+                <div class="hero-cta reveal-item">
+                    <a href="mailto:contact@vitalsense.in" class="btn-primary" id="contact-cta-primary">
+                        <span>Request a Demo</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </a>
+                    <a href="mailto:contact@vitalsense.in" class="btn-ghost" id="contact-cta-partner">
+                        <span>Partner With Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════ FOOTER ═════════════════════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="assets/hero-bg.jpg" class="footer-vs-badge" alt="VitalSense Logo">
+                    <span class="footer-logo cyan-gradient">VitalSense</span>
+                </div>
+                <p class="footer-tagline">Predicting pressure ulcers before they happen. Built in India, for the world.</p>
+                <div class="footer-divider"></div>
+                <div class="footer-links">
+                    <a href="#problem">The Problem</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#solutions">Solutions</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <p class="footer-copy">&copy; 2026 VitalSense. For investor &amp; partner inquiries only. Not a commercially available product.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>
