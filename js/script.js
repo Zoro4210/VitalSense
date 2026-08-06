@@ -105,14 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. NAVBAR SCROLL EFFECT
     // ─────────────────────────────────────
     const navbar = document.getElementById('navbar');
-    const scrollIndicator = document.getElementById('scroll-indicator');
-
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         navbar.classList.toggle('scrolled', scrollY > 80);
-        if (scrollIndicator) {
-            scrollIndicator.style.opacity = Math.max(0, 0.5 - scrollY / 400);
-        }
     }, { passive: true });
 
     // ─────────────────────────────────────
