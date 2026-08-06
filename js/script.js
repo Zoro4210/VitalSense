@@ -194,6 +194,44 @@ document.addEventListener('DOMContentLoaded', () => {
         orbRAF();
     }
 
+    // ─────────────────────────────────────
+    // EXPANDABLE CARD STACK (Key Capabilities)
+    // ─────────────────────────────────────
+    const capStack = document.getElementById('cap-stack');
+    if (capStack) {
+        const cards = capStack.querySelectorAll('.cap-card');
+        let openCard = null;
+
+        cards.forEach((card, idx) => {
+            // Set CSS variable for accent color used by CSS selectors
+            const accent = card.dataset.accent || 'var(--cyan)';
+            card.style.setProperty('--cap-accent', accent);
+            card.style.setProperty('--accent', accent);
+            // Initial z-index: top card on top
+            card.style.zIndex = cards.length - idx;
+
+            card.addEventListener('click', () => {
+                const isAlreadyOpen = card.classList.contains('cap-open');
+
+                // Close any open card
+                if (openCard && openCard !== card) {
+                    openCard.classList.remove('cap-open');
+                    openCard.style.zIndex = cards.length - [...cards].indexOf(openCard);
+                }
+
+                if (isAlreadyOpen) {
+                    card.classList.remove('cap-open');
+                    card.style.zIndex = cards.length - idx;
+                    openCard = null;
+                } else {
+                    card.classList.add('cap-open');
+                    card.style.zIndex = 20;
+                    openCard = card;
+                }
+            });
+        });
+    }
+
 
 
     // ─────────────────────────────────────

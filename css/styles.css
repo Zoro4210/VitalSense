@@ -1,8 +1,8 @@
-/* ══════════════════════════════════════════════════════════
-   VITALSENSE — SITE STYLES  |  Edge Cyan Theme
-   ══════════════════════════════════════════════════════════ */
+﻿/* 
+   VITALSENSE  SITE STYLES  |  Edge Cyan Theme
+    */
 
-/* ─── Design Tokens ─── */
+/*  Design Tokens  */
 :root {
     --bg-base: #ffffff;
     --bg-surface: #f7f7f9;
@@ -40,7 +40,7 @@
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Reset ─── */
+/*  Reset  */
 *,
 *::before,
 *::after {
@@ -75,7 +75,7 @@ a {
     text-decoration: none;
 }
 
-/* ─── Utilities ─── */
+/*  Utilities  */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -94,7 +94,7 @@ a {
     color: var(--cyan);
 }
 
-/* ─── Particle Canvas ─── */
+/*  Particle Canvas  */
 #particles-canvas {
     position: fixed;
     inset: 0;
@@ -103,7 +103,7 @@ a {
     opacity: 0.6;
 }
 
-/* ─── Ambient Orbs ─── */
+/*  Ambient Orbs  */
 .orb {
     position: fixed;
     border-radius: 50%;
@@ -173,9 +173,9 @@ a {
     }
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    NAVBAR
-   ═══════════════════════════════════════════════ */
+    */
 .navbar {
     position: fixed;
     top: 0;
@@ -329,9 +329,9 @@ a {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    HERO
-   ═══════════════════════════════════════════════ */
+    */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -348,7 +348,7 @@ a {
     max-width: 900px;
 }
 
-/* ─── Hero Visual (placeholder until image provided) ─── */
+/*  Hero Visual (placeholder until image provided)  */
 .hero-visual-wrapper {
     position: relative;
     width: 140px;
@@ -453,7 +453,7 @@ a {
     }
 }
 
-/* ─── Hero Typography ─── */
+/*  Hero Typography  */
 .hero-title {
     display: flex;
     flex-direction: column;
@@ -477,7 +477,7 @@ a {
     line-height: 1.7;
 }
 
-/* ─── Hero Badges ─── */
+/*  Hero Badges  */
 .hero-badge-row {
     display: flex;
     justify-content: center;
@@ -523,7 +523,7 @@ a {
     }
 }
 
-/* ─── Hero CTAs ─── */
+/*  Hero CTAs  */
 .hero-cta {
     display: flex;
     justify-content: center;
@@ -583,7 +583,7 @@ a {
     background: var(--glass);
 }
 
-/* ─── Stagger Animations ─── */
+/*  Stagger Animations  */
 .stagger {
     opacity: 0;
     transform: translateY(30px);
@@ -621,7 +621,7 @@ a {
     }
 }
 
-/* ─── Scroll Indicator ─── */
+/*  Scroll Indicator  */
 .hero-scroll-indicator {
     position: absolute;
     bottom: 2.5rem;
@@ -685,9 +685,9 @@ a {
     }
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    SECTIONS (shared)
-   ═══════════════════════════════════════════════ */
+    */
 .section {
     position: relative;
     z-index: 1;
@@ -736,7 +736,7 @@ a {
     align-items: center;
 }
 
-/* ─── Scroll Reveal ─── */
+/*  Scroll Reveal  */
 .reveal-item {
     opacity: 0;
     transform: translateY(32px);
@@ -768,16 +768,16 @@ a {
     transition-delay: 0.4s;
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    SCROLL-MORPHING FULL-BLEED ORB OVERLAY
-   ═══════════════════════════════════════════════ */
+    */
 #orb-overlay {
     position: fixed;
     inset: 0;
     /* covers 100vw x 100vh always */
     pointer-events: none;
     z-index: 0;
-    /* clip-path is driven by JS — starts covering everything */
+    /* clip-path is driven by JS  starts covering everything */
     clip-path: circle(150vmax at 50% 50%);
 }
 
@@ -790,7 +790,7 @@ a {
     object-position: center;
     display: block;
     opacity: 0;
-    /* starts invisible — JS lerps it in as you scroll */
+    /* starts invisible  JS lerps it in as you scroll */
 }
 
 /* anchor reserves layout space for where the orb lands */
@@ -802,9 +802,9 @@ a {
     pointer-events: none;
 }
 
-/* ═══════════════════════════════════════════════
-   PROBLEM SECTION — Zen Orb Visual (adapted)
-   ═══════════════════════════════════════════════ */
+/* 
+   PROBLEM SECTION  Zen Orb Visual (adapted)
+    */
 .zen-orb-container {
     position: relative;
     width: 400px;
@@ -931,7 +931,7 @@ a {
     }
 }
 
-/* ─── Problem bullet list ─── */
+/*  Problem bullet list  */
 .problem-list {
     list-style: none;
     display: flex;
@@ -967,7 +967,7 @@ a {
     background-size: 10px;
 }
 
-/* ─── Market stat pill ─── */
+/*  Market stat pill  */
 .stat-pill-row {
     display: flex;
     flex-wrap: wrap;
@@ -990,9 +990,9 @@ a {
     font-weight: 700;
 }
 
-/* ═══════════════════════════════════════════════
-   HOW IT WORKS — Module Cards
-   ═══════════════════════════════════════════════ */
+/* 
+   HOW IT WORKS  Module Cards
+    */
 .states-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1065,7 +1065,7 @@ a {
     border: 1px solid rgba(30, 173, 160, 0.12);
 }
 
-/* ─── Device Mockups ─── */
+/*  Device Mockups  */
 .card-device {
     margin: 0 auto 2rem;
 }
@@ -1243,87 +1243,156 @@ a {
 }
 
 .card-specs li::before {
-    content: '→';
+    content: '';
     color: var(--cyan);
     flex-shrink: 0;
 }
 
-/* ═══════════════════════════════════════════════
-   FEATURES — Grid
-   ═══════════════════════════════════════════════ */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+
+/* 
+   FEATURES  Expandable Card Stack
+    */
+.cap-stack-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-top: 0.5rem;
 }
 
-.feature-card {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-md);
-    padding: 2rem 1.5rem;
-    transition: all 0.4s var(--ease-out-expo);
+.cap-stack {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/*  Individual card  */
+.cap-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1.5px solid var(--glass-border);
     overflow: hidden;
+    cursor: pointer;
+    margin-bottom: -10px;   /* cards overlap slightly = stack peek */
+    transition:
+        box-shadow 0.4s var(--ease-out-expo),
+        border-color 0.3s,
+        margin-bottom 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.34, 1.1, 0.64, 1);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    z-index: 1;
 }
 
-.feature-card::after {
-    content: '';
+.cap-card:last-child {
+    margin-bottom: 0;
+}
+
+/* When open: push away from stack, add accent glow */
+.cap-card.cap-open {
+    margin-bottom: 8px;
+    z-index: 10;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+}
+
+/* Accent top stripe  hidden when collapsed, visible when open */
+.cap-accent-stripe {
     position: absolute;
-    inset: 0;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--cyan-subtle), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--cap-accent, var(--cyan));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-out-expo);
+    border-radius: 20px 20px 0 0;
 }
 
-.feature-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+.cap-card.cap-open .cap-accent-stripe {
+    transform: scaleX(1);
 }
 
-.feature-card:hover::after {
-    opacity: 1;
+/*  Card inner  */
+.cap-card-inner {
+    padding: 0 1.5rem;
 }
 
-.feature-icon-wrap {
-    width: 48px;
-    height: 48px;
+/*  Header row  */
+.cap-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: var(--cyan-subtle);
-    border-radius: var(--radius-sm);
-    margin-bottom: 1.2rem;
-    position: relative;
-    z-index: 1;
+    gap: 1rem;
+    height: 72px;
+    user-select: none;
 }
 
-.feature-icon-svg {
-    color: var(--cyan);
+.cap-icon-wrap {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s;
 }
 
-.feature-title {
+.cap-card.cap-open .cap-icon-wrap {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.cap-title {
+    flex: 1;
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.6rem;
-    position: relative;
-    z-index: 1;
+    color: var(--text-1);
+    letter-spacing: -0.01em;
+    transition: color 0.3s;
 }
 
-.feature-desc {
+.cap-card.cap-open .cap-title {
+    color: var(--cap-accent, var(--cyan));
+}
+
+/*  Chevron  */
+.cap-chevron {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--bg-elevated);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--text-3);
+    transition: background 0.3s, transform 0.38s var(--ease-spring), color 0.3s;
+}
+
+.cap-card.cap-open .cap-chevron {
+    transform: rotate(180deg);
+    background: color-mix(in srgb, var(--cap-accent, var(--cyan)) 12%, transparent);
+    color: var(--cap-accent, var(--cyan));
+}
+
+/*  Expandable body  */
+.cap-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cap-card.cap-open .cap-body {
+    max-height: 200px;
+}
+
+.cap-body p {
+    font-size: 0.92rem;
+    line-height: 1.7;
     color: var(--text-2);
-    font-size: 0.9rem;
-    line-height: 1.65;
-    position: relative;
-    z-index: 1;
+    margin: 0;
+    padding: 0 0 1.4rem 0;
 }
 
-/* ═══════════════════════════════════════════════
-   FLOW SECTION — 6-Step Signal Flow
-   ═══════════════════════════════════════════════ */
+
+
+/* 
+   FLOW SECTION  6-Step Signal Flow
+    */
 .flow-section {
     background: var(--glass);
     border: 1px solid var(--glass-border);
@@ -1417,9 +1486,9 @@ a {
     border: 1px solid rgba(255, 77, 106, 0.3);
 }
 
-/* ═══════════════════════════════════════════════
-   EXPERIENCE — Interactive Demo
-   ═══════════════════════════════════════════════ */
+/* 
+   EXPERIENCE  Interactive Demo
+    */
 .demo-stage {
     display: flex;
     flex-direction: column;
@@ -1671,7 +1740,7 @@ a {
     transform-style: preserve-3d;
 }
 
-/* ── Individual card ── */
+/*  Individual card  */
 .tc-card {
     position: absolute;
     width: 680px;
@@ -1693,7 +1762,7 @@ a {
     user-select: none;
 }
 
-/* ── Coverflow positions ── */
+/*  Coverflow positions  */
 /* Active = front, full visible */
 .tc-card[data-pos="active"] {
     transform: translateX(0) scale(1) rotateY(0deg);
@@ -1737,7 +1806,7 @@ a {
     pointer-events: none;
 }
 
-/* ── Portrait block ── */
+/*  Portrait block  */
 .tc-portrait {
     position: relative;
     width: 200px;
@@ -1775,7 +1844,7 @@ a {
     background: linear-gradient(225deg, rgba(72, 197, 185, 0.2) 0%, transparent 65%);
 }
 
-/* ── Body block ── */
+/*  Body block  */
 .tc-body {
     flex: 1;
     padding: 1.8rem 2rem;
@@ -1836,7 +1905,7 @@ a {
     border-radius: 3px 0 0 3px;
 }
 
-/* ── Controls ── */
+/*  Controls  */
 .tc-controls {
     display: flex;
     align-items: center;
@@ -2161,9 +2230,9 @@ a {
     color: var(--text-3);
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    RESULTS SECTION
-   ═══════════════════════════════════════════════ */
+    */
 .results-placeholder {
     background: var(--glass);
     border: 2px dashed rgba(30, 173, 160, 0.2);
@@ -2239,9 +2308,9 @@ a {
     color: var(--cyan);
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    FOOTER
-   ═══════════════════════════════════════════════ */
+    */
 .site-footer {
     position: relative;
     z-index: 1;
@@ -2311,9 +2380,9 @@ a {
     color: var(--text-3);
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    RESPONSIVE
-   ═══════════════════════════════════════════════ */
+    */
 @media (max-width: 1024px) {
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2464,9 +2533,9 @@ a {
     }
 }
 
-/* ═══════════════════════════════════════════════
+/* 
    CUSTOM CURSOR & MAGNETIC EFFECT
-   ═══════════════════════════════════════════════ */
+    */
 @media (pointer: fine) {
     body {
         cursor: none;
