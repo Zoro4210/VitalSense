@@ -1,0 +1,10 @@
+{
+  "description": "This interactive web application allows users to explore detailed information on various topics through a visually engaging card stack interface.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

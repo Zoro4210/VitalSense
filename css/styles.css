@@ -1040,14 +1040,6 @@ a {
     margin-bottom: 2rem;
 }
 
-.card-icon {
-    font-size: 1.6rem;
-}
-
-.card-icon-svg {
-    color: var(--cyan);
-}
-
 .card-badge {
     font-size: 0.7rem;
     font-weight: 700;
@@ -1246,6 +1238,20 @@ a {
     content: '';
     color: var(--cyan);
     flex-shrink: 0;
+}
+
+/* Module Images - replacing device mockups */
+.module-img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo);
+}
+
+.state-card:hover .module-img {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(30, 173, 160, 0.15);
 }
 
 
@@ -1720,6 +1726,36 @@ a {
     color: var(--text-3);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+/* Demo Video */
+.demo-video-wrapper {
+    width: 100%;
+    max-width: 300px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 60px rgba(30, 173, 160, 0.1);
+    background: #160525;
+    margin: 0 auto;
+}
+
+.demo-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #160525;
+    object-fit: contain;
+}
+
+.demo-video::-webkit-media-controls-panel {
+    background: linear-gradient(transparent, rgba(22, 5, 37, 0.9));
+}
+
+@media (max-width: 768px) {
+    .demo-video-wrapper {
+        max-width: 100%;
+        border-radius: var(--radius-md);
+    }
 }
 
 
