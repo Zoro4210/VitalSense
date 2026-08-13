@@ -131,6 +131,28 @@
                         <div class="zen-orbit zen-orbit-1"></div>
                         <div class="zen-orbit zen-orbit-2"></div>
                         <div class="zen-orbit zen-orbit-3"></div>
+
+                        <!-- Interactive Pie Chart & Legend Component -->
+                        <div class="orb-pie-container" id="orb-pie-container">
+                            <div class="pie-header">
+                                <span class="pie-badge">Affected Patients Breakdown</span>
+                            </div>
+                            <div class="pie-chart-wrap">
+                                <svg class="pie-chart-svg" viewBox="0 0 200 200" width="190" height="190" id="pie-chart-svg">
+                                    <g id="pie-slices-group"></g>
+                                    <g class="pie-center-group">
+                                        <circle cx="100" cy="100" r="55" class="pie-center-bg"></circle>
+                                        <text x="100" y="93" text-anchor="middle" class="pie-center-val" id="pie-center-val">100%</text>
+                                        <text x="100" y="112" text-anchor="middle" class="pie-center-lbl" id="pie-center-lbl">Affected Patients</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Legend Component -->
+                            <div class="pie-legend" id="pie-legend">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,43 +168,75 @@
                 <p class="section-body reveal-item" style="max-width:600px;margin:0 auto">
                     Sensing happens on the body and the bed. All AI inference happens locally, on-device  no cloud round-trip, no latency, no privacy compromise.
                 </p>
-            </div>
+            </div>            <!-- ── Module Tab Switcher ── -->
+            <div class="module-switcher reveal-item" id="module-switcher">
 
-            <div class="states-grid">
-                <!-- Smart Belt -->
-                <div class="state-card reveal-item" id="card-belt">
-                    <div class="card-icon-strip">
-                        <span class="card-badge card-badge--cyan">System Brain</span>
-                    </div>
-                    <div class="card-device">
-                        <img src="assets/module1.png" alt="Module 1 Smart Belt" class="module-img">
-                    </div>
-                    <h3 class="card-title">Module 1  Smart Belt</h3>
-                    <p class="card-desc">Worn at the waist. Continuously tracks patient posture and acts as the system's brain  running all Edge AI inference locally with no cloud dependency.</p>
-                    <ul class="card-specs">
-                        <li>Silicon Labs EFR32xG26 with built-in IMU &amp; on-chip AI accelerator</li>
-                        <li>Tracks posture: left / supine / right in real time</li>
-                        <li>Communicates with the Bedsheet over BLE</li>
+                <!-- Tab Nav -->
+                <nav class="module-tab-nav" aria-label="Module tabs">
+                    <ul class="module-tabs" role="tablist">
+                        <li class="module-tab module-tab--active"
+                            id="tab-belt"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="module-panel"
+                            data-module="belt">
+                            <span class="mtab-num">01</span>
+                            <span class="mtab-label">Smart Belt</span>
+                            <span class="mtab-badge">System Brain</span>
+                        </li>
+                        <li class="module-tab"
+                            id="tab-sheet"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="module-panel"
+                            data-module="sheet">
+                            <span class="mtab-num">02</span>
+                            <span class="mtab-label">Smart Bedsheet</span>
+                            <span class="mtab-badge">Pressure Sensing</span>
+                        </li>
                     </ul>
-                </div>
+                    <!-- animated underline pill -->
+                    <span class="module-tab-indicator" id="module-tab-indicator"></span>
+                </nav>
 
-                <!-- Smart Bedsheet -->
-                <div class="state-card state-card--zen reveal-item" id="card-sheet">
-                    <div class="card-icon-strip">
-                        <span class="card-badge card-badge--cyan">Pressure Sensing</span>
+                <!-- Content Panel -->
+                <div class="module-panel" id="module-panel" role="tabpanel">
+
+                    <!-- Module image -->
+                    <div class="mpanel-visual">
+                        <div class="mpanel-img-wrap" id="mpanel-img-wrap">
+                            <img src="assets/module1.png"
+                                 alt="Module 1 – Smart Belt"
+                                 class="mpanel-img"
+                                 id="mpanel-img">
+                            <div class="mpanel-img-glow" id="mpanel-img-glow"></div>
+                        </div>
+                        <div class="mpanel-badge-float" id="mpanel-badge">System Brain</div>
                     </div>
-                    <div class="card-device">
-                        <img src="assets/module2.png" alt="Module 2 Smart Bedsheet" class="module-img">
+
+                    <!-- Module text -->
+                    <div class="mpanel-text">
+                        <span class="mpanel-module-num" id="mpanel-num">Module 01</span>
+                        <h3 class="mpanel-title" id="mpanel-title">Smart Belt</h3>
+                        <p class="mpanel-desc" id="mpanel-desc">
+                            Worn at the waist. Continuously tracks patient posture and acts as
+                            the system's brain — running all Edge AI inference locally with no
+                            cloud dependency.
+                        </p>
+                        <ul class="mpanel-specs" id="mpanel-specs">
+                            <li>Silicon Labs EFR32xG26 with built-in IMU &amp; on-chip AI accelerator</li>
+                            <li>Tracks posture: left / supine / right in real time</li>
+                            <li>Communicates with the Bedsheet over BLE</li>
+                        </ul>
+                        <div class="mpanel-chip-row" id="mpanel-chips">
+                            <span class="mpanel-chip">Edge AI</span>
+                            <span class="mpanel-chip">IMU Sensor</span>
+                            <span class="mpanel-chip">BLE</span>
+                        </div>
                     </div>
-                    <h3 class="card-title">Module 2  Smart Bedsheet</h3>
-                    <p class="card-desc">Four detachable, repositionable sensing plates that measure pressure distribution across the bed. Stays idle until the Belt requests a reading  maximizing battery life.</p>
-                    <ul class="card-specs">
-                        <li>Force Sensitive Resistors (FSR) built around an ESP32</li>
-                        <li>Measures pressure, weight concentration &amp; movement</li>
-                        <li>Wake-on-demand power model for efficiency</li>
-                    </ul>
-                </div>
-            </div>
+
+                </div><!-- /module-panel -->
+            </div><!-- /module-switcher -->
 
             <!-- 6-Step Signal Flow -->
             <div class="flow-section reveal-item">
@@ -396,95 +450,40 @@
                     Firmware, embedded software, hardware, and machine learning  VitalSense is a full-stack hardware + AI effort built from the ground up.
                 </p>
             </div>
-            <div class="team-carousel" id="team-carousel">
-                <div class="tc-track" id="tc-track">
+            <!-- Team Slide Carousel (AnimatePresence-style directional slide) -->
+            <div class="team-slider" id="team-carousel">
 
-                    <div class="tc-card" data-index="0">
-                        <div class="tc-portrait">
-                            <img src="assets/team_ak.png" alt="Abhishek Kumar Rai" class="tc-img">
-                            <div class="tc-portrait-glow glow-1"></div>
-                        </div>
-                        <div class="tc-body">
-                            <div class="tc-index">01</div>
-                            <div class="tc-name">Abhishek Kumar Rai</div>
-                            <div class="tc-role">Firmware &amp; App Lead</div>
-                            <p class="tc-desc">Device firmware, on-device model deployment, Flutter mobile app, and site development.</p>
-                            <div class="team-tags">
-                                <span class="team-tag">Firmware</span>
-                                <span class="team-tag">Flutter</span>
-                                <span class="team-tag">Edge AI</span>
-                                <span class="team-tag">Web</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tc-card" data-index="1">
-                        <div class="tc-portrait">
-                            <img src="assets/team_ag.jpeg" alt="Arpan Gupta" class="tc-img">
-                            <div class="tc-portrait-glow glow-2"></div>
-                        </div>
-                        <div class="tc-body">
-                            <div class="tc-index">02</div>
-                            <div class="tc-name">Arpan Gupta</div>
-                            <div class="tc-role">Systems Software</div>
-                            <p class="tc-desc">Raspberry Pibased hospital-side data pipeline, backend systems, and dashboard infrastructure.</p>
-                            <div class="team-tags">
-                                <span class="team-tag">Raspberry Pi</span>
-                                <span class="team-tag">Pipeline</span>
-                                <span class="team-tag">Backend</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tc-card" data-index="2">
-                        <div class="tc-portrait">
-                            <img src="assets/team_bk.jpg" alt="Basudeo Krishnan" class="tc-img">
-                            <div class="tc-portrait-glow glow-3"></div>
-                        </div>
-                        <div class="tc-body">
-                            <div class="tc-index">03</div>
-                            <div class="tc-name">Basudeo Krishnan</div>
-                            <div class="tc-role">Hardware Lead</div>
-                            <p class="tc-desc">Sensing plate design, wiring, and bed module integration  the physical foundation of VitalSense.</p>
-                            <div class="team-tags">
-                                <span class="team-tag">Hardware</span>
-                                <span class="team-tag">PCB</span>
-                                <span class="team-tag">FSR</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tc-card" data-index="3">
-                        <div class="tc-portrait">
-                            <img src="assets/team_bs.jpg" alt="Bhargavi Siva" class="tc-img">
-                            <div class="tc-portrait-glow glow-4"></div>
-                        </div>
-                        <div class="tc-body">
-                            <div class="tc-index">04</div>
-                            <div class="tc-name">Bhargavi Siva</div>
-                            <div class="tc-role">ML Lead</div>
-                            <p class="tc-desc">Model development, data collection strategy, and training the on-device risk-prediction model.</p>
-                            <div class="team-tags">
-                                <span class="team-tag">Machine Learning</span>
-                                <span class="team-tag">TinyML</span>
-                                <span class="team-tag">Data</span>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Slide stage: only one card visible at a time -->
+                <div class="ts-stage" id="ts-stage" aria-live="polite">
+                    <!-- Card injected by JS -->
                 </div>
 
-                <!-- Controls -->
-                <div class="tc-controls">
-                    <button class="tc-btn" id="tc-prev" aria-label="Previous">‹</button>
-                    <div class="tc-dots" id="tc-dots">
+                <!-- Controls row -->
+                <div class="ts-controls">
+                    <button class="ts-btn" id="tc-prev" aria-label="Previous member">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2.5"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+                        </svg>
+                    </button>
+
+                    <div class="ts-dots" id="tc-dots">
                         <span class="tc-dot active" data-i="0"></span>
                         <span class="tc-dot" data-i="1"></span>
                         <span class="tc-dot" data-i="2"></span>
                         <span class="tc-dot" data-i="3"></span>
                     </div>
-                    <button class="tc-btn" id="tc-next" aria-label="Next">›</button>
+
+                    <button class="ts-btn" id="tc-next" aria-label="Next member">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2.5"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
                 </div>
+
             </div>
         </div>
     </section>
