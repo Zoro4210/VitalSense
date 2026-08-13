@@ -59,15 +59,11 @@
             <div class="container">
                 <button class="youtube-preview reveal-item" id="youtube-preview" type="button" aria-haspopup="dialog"
                     aria-controls="youtube-lightbox">
-                    <img class="youtube-preview-image" id="youtube-preview-image" src="assets/microscope.jpg"
-                        alt="VitalSense video preview">
-                    <span class="youtube-preview-shade" aria-hidden="true"></span>
                     <span class="youtube-play-button" aria-hidden="true">
                         <svg viewBox="0 0 24 24">
                             <path d="M9 7.2v9.6L17 12 9 7.2Z"></path>
                         </svg>
                     </span>
-                    <span class="youtube-preview-label">Play the VitalSense demo</span>
                 </button>
                 <p class="demo-player-caption reveal-item">VitalSense system demonstration</p>
             </div>
@@ -132,7 +128,6 @@
             const YOUTUBE_VIDEO_URL = 'https://youtu.be/dQw4w9WgXcQ?si=NwZ2rM7M5jz7ISPM';
 
             const preview = document.getElementById('youtube-preview');
-            const previewImage = document.getElementById('youtube-preview-image');
             const lightbox = document.getElementById('youtube-lightbox');
             const iframe = document.getElementById('youtube-iframe');
             const closeButton = document.getElementById('youtube-lightbox-close');
@@ -160,10 +155,6 @@
             }
 
             const videoId = getYouTubeId(YOUTUBE_VIDEO_URL);
-            if (videoId && previewImage) {
-                previewImage.src = `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/maxresdefault.jpg`;
-            }
-
             function openVideo() {
                 if (!videoId) {
                     window.alert('Add the YouTube URL in the YOUTUBE_VIDEO_URL slot in demo.html.');
