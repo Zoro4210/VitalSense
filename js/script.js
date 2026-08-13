@@ -544,13 +544,9 @@ document.addEventListener('DOMContentLoaded', () => {
             riskBadgeEl.textContent = s.badge;
             riskBadgeEl.className = 'demo-risk-badge';
             if (s.score === 'LOW') {
-                riskBadgeEl.style.background = 'rgba(0,229,160,0.15)';
                 riskBadgeEl.style.color = '#00e5a0';
-                riskBadgeEl.style.borderColor = 'rgba(0,229,160,0.3)';
             } else {
-                riskBadgeEl.style.background = 'rgba(255,165,60,0.15)';
                 riskBadgeEl.style.color = '#ffaa3c';
-                riskBadgeEl.style.borderColor = 'rgba(255,165,60,0.3)';
             }
         }
 
@@ -901,7 +897,6 @@ document.addEventListener('DOMContentLoaded', () => {
             belt: {
                 num:   'Module 01',
                 title: 'Smart Belt',
-                badge: 'System Brain',
                 img:   'assets/module1.png',
                 imgAlt:'Module 1 – Smart Belt',
                 glowColor: 'rgba(30,173,160,0.4)',
@@ -916,7 +911,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sheet: {
                 num:   'Module 02',
                 title: 'Smart Bedsheet',
-                badge: 'Pressure Sensing',
                 img:   'assets/module2.png',
                 imgAlt:'Module 2 – Smart Bedsheet',
                 glowColor: 'rgba(91,110,247,0.35)',
@@ -958,7 +952,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const d = moduleData[key];
             const img   = document.getElementById('mpanel-img');
             const glow  = document.getElementById('mpanel-img-glow');
-            const badge = document.getElementById('mpanel-badge');
             const num   = document.getElementById('mpanel-num');
             const title = document.getElementById('mpanel-title');
             const desc  = document.getElementById('mpanel-desc');
@@ -967,7 +960,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (img)   { img.src = d.img; img.alt = d.imgAlt; }
             if (glow)  { glow.style.background = `radial-gradient(circle at 50% 80%, ${d.glowColor}, transparent 65%)`; }
-            if (badge) { badge.textContent = d.badge; }
             if (num)   { num.textContent  = d.num; }
             if (title) { title.textContent = d.title; }
             if (desc)  { desc.textContent  = d.desc; }

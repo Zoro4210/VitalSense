@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Demo | VitalSense</title>
+    <meta name="description"
+        content="Watch the VitalSense product demonstration and see continuous posture and pressure-risk monitoring in action.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="research-page demo-page">
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav class="navbar research-navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand" aria-label="VitalSense home">
+                <img src="assets/hero-bg.jpg" class="nav-vs-badge" alt="VitalSense logo">
+                <span class="nav-logo-text">VitalSense</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#problem" class="nav-link">The Problem</a>
+                <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+                <a href="index.html#solutions" class="nav-link">Solutions</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="index.html#team" class="nav-link">Team</a>
+                <a href="#demo-player" class="nav-cta-btn nav-link-active">View Demo</a>
+            </div>
+            <button class="nav-mobile-toggle" id="nav-toggle"
+                aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <main id="demo">
+        <section class="demo-page-hero">
+            <div class="container demo-page-heading reveal-group">
+                <p class="research-kicker reveal-item">VitalSense product walkthrough</p>
+                <h1 class="research-title reveal-item">See prevention become<br><span
+                        class="cyan-text">predictive.</span></h1>
+                <p class="research-intro reveal-item">Watch how the Smart Belt, Smart Bedsheet, and on-device
+                    intelligence work together to identify pressure-ulcer risk before visible injury develops.</p>
+            </div>
+        </section>
+
+        <section class="demo-player-section" id="demo-player">
+            <div class="container">
+                <button class="youtube-preview reveal-item" id="youtube-preview" type="button" aria-haspopup="dialog"
+                    aria-controls="youtube-lightbox">
+                    <img class="youtube-preview-image" id="youtube-preview-image" src="assets/microscope.jpg"
+                        alt="VitalSense video preview">
+                    <span class="youtube-preview-shade" aria-hidden="true"></span>
+                    <span class="youtube-play-button" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 7.2v9.6L17 12 9 7.2Z"></path>
+                        </svg>
+                    </span>
+                    <span class="youtube-preview-label">Play the VitalSense demo</span>
+                </button>
+                <p class="demo-player-caption reveal-item">VitalSense system demonstration</p>
+            </div>
+        </section>
+
+        <section class="section demo-page-summary">
+            <div class="container">
+                <div class="research-synthesis-panel reveal-item">
+                    <div>
+                        <h2>One connected system,<br><span class="cyan-text">one timely signal.</span></h2>
+                    </div>
+                    <div class="research-foundations">
+                        <div><span>01</span>
+                            <h3>Sense</h3>
+                            <p>The Belt and Bedsheet continuously observe posture and pressure conditions.</p>
+                        </div>
+                        <div><span>02</span>
+                            <h3>Assess</h3>
+                            <p>On-device intelligence evaluates prolonged immobility without a cloud dependency.</p>
+                        </div>
+                        <div><span>03</span>
+                            <h3>Act</h3>
+                            <p>Caregivers receive clear risk information early enough to intervene.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand"><img src="assets/hero-bg.jpg" class="footer-vs-badge"
+                        alt="VitalSense logo"><span class="footer-logo cyan-gradient">VitalSense</span></div>
+                <p class="footer-tagline">Predicting pressure ulcers before they happen. Built in India, for the world.
+                </p>
+                <div class="footer-divider"></div>
+                <div class="footer-links"><a href="index.html">Home</a><a href="index.html#how-it-works">How It
+                        Works</a><a href="research.html">Research</a><a href="demo.html">Demo</a><a
+                        href="index.html#team">Team</a><a href="index.html#contact">Contact</a></div>
+                <p class="footer-copy">&copy; 2026 VitalSense. For investor &amp; partner inquiries only. Not a
+                    commercially available product.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="youtube-lightbox" id="youtube-lightbox" role="dialog" aria-modal="true"
+        aria-label="VitalSense demonstration video" hidden>
+        <button class="youtube-lightbox-close" id="youtube-lightbox-close" type="button"
+            aria-label="Close video">&times;</button>
+        <div class="youtube-lightbox-player">
+            <iframe id="youtube-iframe" title="VitalSense demonstration on YouTube"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        (() => {
+            // YOUTUBE URL SLOT: paste the full YouTube video URL between the quotes.
+            const YOUTUBE_VIDEO_URL = 'https://youtu.be/dQw4w9WgXcQ?si=NwZ2rM7M5jz7ISPM';
+
+            const preview = document.getElementById('youtube-preview');
+            const previewImage = document.getElementById('youtube-preview-image');
+            const lightbox = document.getElementById('youtube-lightbox');
+            const iframe = document.getElementById('youtube-iframe');
+            const closeButton = document.getElementById('youtube-lightbox-close');
+            let lastFocusedElement = null;
+
+            function getYouTubeId(value) {
+                const input = value.trim();
+                if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+
+                try {
+                    const url = new URL(input);
+                    const host = url.hostname.replace(/^www\./, '');
+
+                    if (host === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+                    if (host.endsWith('youtube.com')) {
+                        if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+                        const parts = url.pathname.split('/').filter(Boolean);
+                        if (['embed', 'shorts', 'live'].includes(parts[0])) return parts[1] || '';
+                    }
+                } catch (_) {
+                    return '';
+                }
+
+                return '';
+            }
+
+            const videoId = getYouTubeId(YOUTUBE_VIDEO_URL);
+            if (videoId && previewImage) {
+                previewImage.src = `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/maxresdefault.jpg`;
+            }
+
+            function openVideo() {
+                if (!videoId) {
+                    window.alert('Add the YouTube URL in the YOUTUBE_VIDEO_URL slot in demo.html.');
+                    return;
+                }
+
+                if (!['http:', 'https:'].includes(window.location.protocol)) {
+                    window.alert('YouTube requires this page to be opened through a web server. Run: python -m http.server 8000, then open http://localhost:8000/demo.html');
+                    return;
+                }
+
+                lastFocusedElement = document.activeElement;
+                const playerParams = new URLSearchParams({
+                    autoplay: '1',
+                    rel: '0',
+                    playsinline: '1',
+                    origin: window.location.origin,
+                    widget_referrer: window.location.href
+                });
+                iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${playerParams}`;
+                lightbox.hidden = false;
+                document.body.classList.add('video-lightbox-open');
+                closeButton.focus();
+            }
+
+            function closeVideo() {
+                if (lightbox.hidden) return;
+                lightbox.hidden = true;
+                iframe.src = '';
+                document.body.classList.remove('video-lightbox-open');
+                lastFocusedElement?.focus();
+            }
+
+            preview?.addEventListener('click', openVideo);
+            closeButton?.addEventListener('click', closeVideo);
+            lightbox?.addEventListener('click', (event) => {
+                if (event.target === lightbox) closeVideo();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') closeVideo();
+            });
+        })();
+    </script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
